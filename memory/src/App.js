@@ -32,7 +32,7 @@ class App extends Component {
     const won = new Date().getSeconds() % 2 === 0
     return (
       <div className="memory">
-        <GuessCount guesses={0} />
+        <GuessCount guesses="a" />
         {this.cards.map((card, index) => (
           <Card
             card={card}
