@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Letter from './Letter'
 import Key from './Key'
 
-const WORD = "Bonsoir"
+const WORD = "bonsoir"
 const ALL_KEYS = "abcdefghijklmnopqrstuvwxyz".split("")
 
 class App extends Component {
@@ -10,37 +10,53 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            lettersArray: WORD.split(""),
-            lettersTested: []
+            guesses: 0,
+            lettersRemaining: WORD.toLowerCase().split(""),
+            lettersWrong: [],
+            lettersGuessed: []
         }
     }
 
     TestKey = char => {
-        const {lettersTested} = this.state
-        console.log(lettersTested)
-        this.setState({lettersTested: [...lettersTested, char.toLowerCase()]})
+        const {guesses, lettersWrong, lettersGuessed, lettersRemaining} = this.state
+
+        if (lettersRemaining.length !== 0) {
+
+            if (lettersRemaining.includes(char)) {
+                this.setState({
+                    lettersGuessed: [...lettersGuessed, char],
+                    lettersRemaining: lettersRemaining.filter((c) => c !== char)
+                })
+            } else {
+                this.setState({lettersWrong: [...lettersWrong, char]})
+            }
+            
+            this.setState({guesses: guesses + 1})
+        }
     }
 
     render() {
-        const {lettersArray, lettersTested} = this.state
+        const {guesses, lettersGuessed, lettersWrong} = this.state
 
         return (
             <div className="container text-center">
                 <h1 className="mt-5">Pendu</h1>
-
+                <p>{guesses > 1 ? guesses + " tentatives" : guesses + " tentative"}</p>
                 <div className="my-5 text-center letter">
-                    {lettersArray.map((char, index) => (
+                    {WORD.toLowerCase().split("").map((char, index) => (
                         <Letter
-                            lettersTested={lettersTested}
+                            lettersGuessed={lettersGuessed}
                             value={char}
                             key={index}
                         />
                     ))}
                 </div>
 
-                <div>
+                <div className="keys">
                     {ALL_KEYS.map((char, index) => (
                         <Key
+                            lettersGuessed={lettersGuessed}
+                            lettersWrong={lettersWrong}
                             char={char}
                             onClick={this.TestKey}
                             key={index}

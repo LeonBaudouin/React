@@ -4,10 +4,10 @@ import './Letter.css'
 class Letter extends React.Component {
 
     render () {
-        const {value, lettersTested} = this.props
+        const {value, lettersGuessed} = this.props
         return (
             <span>
-                {lettersTested.includes(value.toLowerCase()) ? value : "_"}
+                {lettersGuessed.includes(value.toLowerCase()) ? value : "_"}
             </span>
         )
     }
