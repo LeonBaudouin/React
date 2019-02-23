@@ -8,11 +8,13 @@ class Form extends React.Component {
 
 
         return (
-            <form className="text-left" onSubmit={handleForm}>
-                <label htmlFor="ville"> Ville : </label>
-                <input onChange={handleInput} className="form-control" type="text" name="ville" id="ville" placeholder="Taper la ville de votre choix"/>
-                <button type="submit" className="btn btn-primary mt-2">Valider</button>
-            </form>
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand">App Météo</span>
+              <form class="form-inline" onSubmit={handleForm}>
+                <input onChange={handleInput}  class="form-control mr-sm-2" type="search" placeholder="Entrez une ville" aria-label="Entrez une ville"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Valider</button>
+              </form>
+            </nav>
         )
     }
 }

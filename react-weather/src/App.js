@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import './App.css'
 import Form from "./component/Form"
-import Table from "./component/Table"
-import config from "./config"
+import Results from "./component/Results"
+import {key} from "./config"
 
 
 class App extends Component {
@@ -13,33 +13,42 @@ class App extends Component {
 
         this.state = {
             city: " ",
-            weatherInfos: [],
-            requestFailed: false
+            cityInfos: null,
+            weatherList: [],
+            requestFailed: true
         }
     }
 
+
     handleForm = (e) => {
+
         e.preventDefault()
 
         const city = encodeURIComponent(this.state.city)
-        const url = `http://api.openweathermap.org/data/2.5/forecast?appid=${config.id}&q=${city}&units=metric`
+        const url = `http://api.openweathermap.org/data/2.5/forecast?appid=${key.weather}&q=${city}&units=metric`
 
         fetch(url)
             .then(res => res.json())
+            
+            // En cas de succès
             .then((obj) => {
                 if(obj.cod === "404") {
                     return Promise.reject()
                 }
                 this.setState({
-                        weatherInfos: obj.list,
+                    weatherList: obj.list,
+                    cityInfos: obj.city,
                     requestFailed: false
                 })
             })
+
+            // En cas d'échec
             .catch(() => {
                 this.setState({
                     requestFailed: true
                 })
             })
+
     }
 
     handleInput = ({target : {value}}) => {
@@ -48,17 +57,22 @@ class App extends Component {
         })
     }
 
+
     render() {
 
         const {requestFailed} = this.state
 
         return (
-            <div className="container">
-                <h1 className="my-5">App Météo</h1>
+            <div className="app">
                 <Form handleForm={this.handleForm} handleInput={this.handleInput} />
-                
-                <h2 className="mt-5 mb-3">{ requestFailed ? "Pas de résultats" : "Liste des résultats"}</h2>
-                { !requestFailed && <Table weatherInfos={this.state.weatherInfos} city={this.state.city} /> }
+                <div className="container">
+                    
+                    <h2 className="mt-5 mb-3 text-center">{ requestFailed ? "Pas de résultats" : "Liste des résultats"}</h2>
+
+                    { !requestFailed && 
+                        <Results weatherList={this.state.weatherList} cityInfos={this.state.cityInfos} />
+                    }
+                </div>
             </div>
         )
     }
