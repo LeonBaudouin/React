@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
 
-    height: 100px;
+    height: 150px;
 
     flex-direction: column;
     flex-grow: 1;

@@ -4,10 +4,6 @@
 
 .weather-list {
     display: flex;
-    /* overflow-x: scroll;
-    overflow-y: hidden; */
-    /* position: absolute; */
-    /* bottom: 0; */
 }
 
 .weather-list::before, .weather-list::after {

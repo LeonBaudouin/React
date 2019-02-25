@@ -82,7 +82,7 @@ class App extends Component {
 
             this.setState({
                 endgame: -1,
-                lettersRemaining: ALL_KEYS
+                lettersGuessed: ALL_KEYS
             })
             
         } else {

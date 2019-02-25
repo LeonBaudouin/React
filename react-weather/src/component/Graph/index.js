@@ -26,6 +26,7 @@ class Graph extends Component {
     render() {
         const { weatherInfos, handleClick, currentDt } = this.props;
 
+
         const temperature = Math.floor(weatherInfos.main.temp * 10) / 10
 
         const classesBase = "progress graph"
