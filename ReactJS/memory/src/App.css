@@ -1,0 +1,7 @@
+.memory {
+  display: grid;
+  grid-template: repeat(6, 1fr) / repeat(6, 1fr);
+  width: 300px;
+  margin: auto;
+  user-select: none;
+}

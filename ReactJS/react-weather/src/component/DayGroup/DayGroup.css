@@ -1,0 +1,28 @@
+.day-group {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.day-group:nth-of-type(2n) {
+    background-color: rgb(235, 235, 235);
+}
+
+.day-group:nth-of-type(2n+1) {
+    background-color: rgb(255, 255, 255);
+}
+
+.day-infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 1/9;
+}
+
+.day-before, .day-after {
+    width: 50px;
+}
+
+.day-before {
+    transform: rotate(180deg);
+}

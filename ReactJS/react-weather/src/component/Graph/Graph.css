@@ -1,0 +1,42 @@
+.graph {
+    position: relative;
+    display: flex;
+
+    height: 150px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 0;
+    background: none;
+}
+
+.graph.active {
+    background-color: rgba(48, 196, 109, 0.281) !important;
+}
+
+.graph > .progress-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+}
+
+.graph-icon {
+    width: 100%;
+    height: auto;
+}
+
+.graph-infos {
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.graph-temp, .graph-hour {
+    font-weight: bold;
+}
