@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getFavorites, setFavorites } from '../../lib/FavoritesFunc';
 
 class Music extends Component {
 
@@ -11,7 +12,7 @@ class Music extends Component {
 
     _CheckIsFavorite() {
         const {id} = this.props.music
-        const favorites = JSON.parse(localStorage.getItem("favorites"))
+        const favorites = getFavorites();
         return favorites.reduce((acc, fav) => fav.id === id ? true : acc, false)
     }
     
@@ -19,14 +20,10 @@ class Music extends Component {
     _AddToFavorites(e) {
         e.preventDefault();
 
-        const {music} = this.props;
-        const favorites = localStorage.getItem("favorites");
+        const {music} = this.props
+        const favorites = getFavorites()
 
-        if(favorites == undefined) {
-            localStorage.setItem("favorites", JSON.stringify([music]))
-        } else {
-            localStorage.setItem("favorites", JSON.stringify([...JSON.parse(favorites), music]))
-        }
+        setFavorites([...favorites, music])
 
         this.setState({
             isFavorite: true
@@ -38,11 +35,11 @@ class Music extends Component {
         e.preventDefault();
 
         const {id} = this.props.music
-        const favorites = JSON.parse(localStorage.getItem("favorites"))
+        const favorites = getFavorites()
         const newFavorites = favorites.filter((music) => music.id !== id)
 
 
-        localStorage.setItem("favorites", JSON.stringify(newFavorites))
+        setFavorites(newFavorites)
 
         this.setState({
             isFavorite: false
@@ -68,7 +65,7 @@ class Music extends Component {
                     { !isFavorite ?
                         (<a onClick={(e) => this._AddToFavorites(e)} href="#" className="btn btn-sm btn-danger"><i className="fas fa-heart"></i> Ajouter aux favoris</a>)
                         :
-                        (<a onClick={(e) => this._RemoveFromFavorites(e)} href="#" className="btn btn-sm btn-outline-danger"><i className="fas fa-close"></i> Supprimer des favoris</a>)
+                        (<a onClick={(e) => this._RemoveFromFavorites(e)} href="#" className="btn btn-sm btn-outline-danger"><i className="far fa-heart"></i> Supprimer des favoris</a>)
                     }
                 </div>
             </div>

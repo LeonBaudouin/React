@@ -34,14 +34,16 @@ class Home extends Component {
         const title = encodeURIComponent(this.state.title)
 
         const url = `https://api.deezer.com/search?q=${title}&order=${orderBy}&output=jsonp`;
-
+        console.log(url)
         fetchJSONP(url)
             .then(res => res.json())
-            .then(data => data.data)
-            .then(musics => 
-                this.setState({
-                    musics: musics
-                }))
+            .catch(err => console.log(err))
+            .then(({data, error}) => {
+                if(data)
+                    this.setState({ musics: data })
+                else 
+                    console.error(error.message)
+            })
     }
 
 

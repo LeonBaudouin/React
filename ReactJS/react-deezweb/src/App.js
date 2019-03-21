@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Favorites from "./components/Favorites";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 class App extends Component {
-	
+    
     render() {
+
         return (
             <div className="App">
 				<Router>

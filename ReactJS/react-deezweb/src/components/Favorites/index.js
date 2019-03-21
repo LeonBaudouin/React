@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Music from '../Music';
+import { getFavorites } from '../../lib/FavoritesFunc';
 
 class Favorites extends Component {
 
     render() {
-        const favorites = JSON.parse(localStorage.getItem("favorites"));
+        const favorites = getFavorites()
 
         return (
             <main className="container mt-3">
