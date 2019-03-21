@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { getMoviePosterFromApi } from "../API/TMDBAPI";
 
 class FilmItem extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class FilmItem extends Component {
         return (
             <View style={Styles.container}>
                 <Image style={Styles.image}
-                    // source={require('')}
+                    source={{uri: getMoviePosterFromApi(film.poster_path)}}
                 />
                 <View style={Styles.infos}>
                     <View style={Styles.header}>
