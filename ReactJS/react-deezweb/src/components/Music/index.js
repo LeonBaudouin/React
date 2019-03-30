@@ -1,29 +1,20 @@
 import React, { Component } from 'react'
-import { getFavorites, setFavorites } from '../../lib/FavoritesFunc';
+import FavoritesFunc from '../../lib/FavoritesFunc';
 
 class Music extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isFavorite: this._CheckIsFavorite(this.props.music)
+            isFavorite: FavoritesFunc.isFavorite(this.props.music)
         }
-    }
-
-    _CheckIsFavorite() {
-        const {id} = this.props.music
-        const favorites = getFavorites();
-        return favorites.reduce((acc, fav) => fav.id === id ? true : acc, false)
     }
     
 
     _AddToFavorites(e) {
         e.preventDefault();
 
-        const {music} = this.props
-        const favorites = getFavorites()
-
-        setFavorites([...favorites, music])
+        FavoritesFunc.addFavoriteToStorage(this.props.music);
 
         this.setState({
             isFavorite: true
@@ -34,12 +25,7 @@ class Music extends Component {
     _RemoveFromFavorites(e) {
         e.preventDefault();
 
-        const {id} = this.props.music
-        const favorites = getFavorites()
-        const newFavorites = favorites.filter((music) => music.id !== id)
-
-
-        setFavorites(newFavorites)
+        FavoritesFunc.removeFavoriteFromStorage(this.props.music);
 
         this.setState({
             isFavorite: false
@@ -65,7 +51,7 @@ class Music extends Component {
                     { !isFavorite ?
                         (<a onClick={(e) => this._AddToFavorites(e)} href="#" className="btn btn-sm btn-danger"><i className="fas fa-heart"></i> Ajouter aux favoris</a>)
                         :
-                        (<a onClick={(e) => this._RemoveFromFavorites(e)} href="#" className="btn btn-sm btn-outline-danger"><i className="far fa-heart"></i> Supprimer des favoris</a>)
+                        (<a onClick={(e) => this._RemoveFromFavorites(e)} href="#" className="btn btn-sm btn-outline-danger"><i className="far fa-heart-broken"></i> Supprimer des favoris</a>)
                     }
                 </div>
             </div>

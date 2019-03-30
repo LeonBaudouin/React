@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import fetchJSONP from "fetch-jsonp";
 import Music from "../Music";
+import DeezerAPI from "../../lib/DeezerAPIFunc";
 
 class Home extends Component {
 
@@ -15,7 +15,6 @@ class Home extends Component {
     }
 
     _setTitle({target: {value}}) {
-        console.log("set title  = " + value)
         this.setState({
             title: value
         })
@@ -34,21 +33,18 @@ class Home extends Component {
         const title = encodeURIComponent(this.state.title)
 
         const url = `https://api.deezer.com/search?q=${title}&order=${orderBy}&output=jsonp`;
-        console.log(url)
-        fetchJSONP(url)
-            .then(res => res.json())
-            .catch(err => console.log(err))
-            .then(({data, error}) => {
-                if(data)
-                    this.setState({ musics: data })
-                else 
-                    console.error(error.message)
-            })
+
+        DeezerAPI.DoWithDataFromAPI(url,
+            musics =>
+                this.setState({
+                    musics: musics
+                })
+            )
+
     }
 
 
     render() {
-        console.log(this.state)
         const {musics} = this.state
         return (
             <main className="container mt-3">

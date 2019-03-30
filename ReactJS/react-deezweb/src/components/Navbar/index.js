@@ -11,10 +11,7 @@ class Navbar extends Component {
                         <img src={logo} alt="React Logo" width="42" />{" "}
                         Deezweb
                     </span>
-                    <div
-                        className="collapse navbar-collapse"
-                        id="navbarNav"
-						>
+                    <div className="collapse navbar-collapse" id="navbarNav" >
                         <ul className="navbar-nav">
                             <ActiveLink activeOnlyWhenExact to="/">
                                 <i className="fas fa-search" />{" "}
