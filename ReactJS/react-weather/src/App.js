@@ -25,7 +25,8 @@ class App extends Component {
         e.preventDefault()
 
         const city = encodeURIComponent(this.state.city)
-        const url = `http://api.openweathermap.org/data/2.5/forecast?appid=${key.weather}&q=${city}&units=metric`
+        const url =
+        `http://api.openweathermap.org/data/2.5/forecast?appid=${key.weather}&q=${city}&units=metric`
 
         fetch(url)
             .then(res => res.json())
@@ -101,7 +102,11 @@ class App extends Component {
                 <Form handleForm={this.handleForm} handleInput={this.handleInput} />
                 <div className="container">
                     
-                    <h2 className="mt-5 mb-3 text-center">{ requestFailed ? "Pas de résultats" : "Liste des résultats"}</h2>
+                    <h2 className="mt-5 mb-3 text-center">{
+                        requestFailed
+                        ? "Pas de résultats"
+                        : "Liste des résultats"}
+                    </h2>
 
                     { !requestFailed && 
                         <Results dayList={dayList} cityInfos={cityInfos} />

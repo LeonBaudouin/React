@@ -12,7 +12,7 @@ class DayGroup extends Component {
                 currentDt,
                 handleClick,
                 handleNextDay,
-                handlePreviousDay} = this.props
+                handlePreviousDay } = this.props
 
         return (
             <div className="day-group card-body p-0">

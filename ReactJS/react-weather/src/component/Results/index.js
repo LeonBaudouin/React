@@ -59,8 +59,6 @@ class Results extends Component {
             dayPosition = 0
         }
 
-        console.log(currentDay)
-
         return (
             <div className="results card">
                 <h5 className="card-header text-center">

@@ -34,8 +34,6 @@ class App extends Component {
         
         const randomLetter = lettersRemaining[Math.floor(Math.random() * lettersRemaining.length)]
 
-        console.log(randomLetter)
-
         this.setState({
             lettersGuessed: [randomLetter],
             lettersRemaining: lettersRemaining.filter((c) => c !== randomLetter)
