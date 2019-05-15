@@ -1,0 +1,13 @@
+{
+    "name": "React",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+    },
+    "scripts": {
+        "pendu": "npm start --prefix ReactJS/pendu",
+        "weather": "npm start --prefix ReactJS/react-weather",
+        "deez": "npm start --prefix ReactJS/react-deezweb"
+    }
+  }
+  
